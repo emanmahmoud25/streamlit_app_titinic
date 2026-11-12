@@ -6,7 +6,22 @@ from pathlib import Path
 
 st.title("Titanic Data Application")
 
-st.image("src/utils/tittanic_image.jpg", use_column_width=True , caption="Titanic Data Analysis")
+# st.image("src/utils/tittanic_image.jpg", use_column_width=True , caption="Titanic Data Analysis")
+from pathlib import Path
+import streamlit as st
+
+BASE_DIR = Path(__file__).parent
+
+image_path = BASE_DIR / "src" / "utils" / "tittanic_image.jpg"
+
+if image_path.exists():
+    st.image(
+        str(image_path),
+        caption="Titanic Data Analysis",
+        width="stretch"
+    )
+else:
+    st.error(f"Image not found: {image_path}")
 
 df = pd.read_csv("src/data/titanic.csv")
 df.columns = df.columns.str.lower()
